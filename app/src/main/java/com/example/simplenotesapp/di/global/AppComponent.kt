@@ -1,6 +1,7 @@
 package com.example.simplenotesapp.di.global
 
 import android.app.Application
+import com.example.simplenotesapp.database.NotesDao
 import dagger.Component
 import javax.inject.Singleton
 
@@ -8,4 +9,5 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
     fun inject(app: Application)
+    fun provideNotesDao(): NotesDao
 }
