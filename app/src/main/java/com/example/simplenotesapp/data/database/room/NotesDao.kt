@@ -1,4 +1,4 @@
-package com.example.simplenotesapp.database
+package com.example.simplenotesapp.data.database.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -6,15 +6,14 @@ import androidx.room.*
 @Dao
 interface NotesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun addNote(note: Note)
+    fun addNote(note: Note)
 
     @Update
-    suspend fun replaceNote(note: Note)
+    fun updateNote(note: Note)
 
     @Delete
-    suspend fun deleteNote(note: Note)
+    fun deleteNote(note: Note)
 
     @Query("SELECT * FROM notes")
     fun getNotes(): LiveData<List<Note>>
-
 }

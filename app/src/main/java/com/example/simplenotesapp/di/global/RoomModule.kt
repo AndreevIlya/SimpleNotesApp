@@ -2,8 +2,11 @@ package com.example.simplenotesapp.di.global
 
 import android.app.Application
 import androidx.room.Room
-import com.example.simplenotesapp.database.NotesDB
-import com.example.simplenotesapp.database.NotesDao
+import com.example.simplenotesapp.data.database.DBProvider
+import com.example.simplenotesapp.data.database.room.Note
+import com.example.simplenotesapp.data.database.room.NotesDB
+import com.example.simplenotesapp.data.database.room.RoomImpl
+import com.example.simplenotesapp.domain.NoteEntity
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,15 +15,11 @@ import javax.inject.Singleton
 class RoomModule {
     @Provides
     @Singleton
-    fun provideNotesDatabase(context: Application): NotesDB{
-        return Room.databaseBuilder(context,NotesDB::class.java,"notes")
+    fun provideNotesDatabase(context: Application): DBProvider<Note,NoteEntity> {
+        val database =  Room.databaseBuilder(context,
+            NotesDB::class.java,"notes")
             .fallbackToDestructiveMigration()
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideNotesDao(database: NotesDB): NotesDao{
-        return database.getNotesDao()
+        return RoomImpl(database)
     }
 }

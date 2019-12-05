@@ -1,11 +1,8 @@
 package com.example.simplenotesapp
 
 import android.app.Application
-import com.example.simplenotesapp.database.NotesDB
-import com.example.simplenotesapp.di.global.AppComponent
-import com.example.simplenotesapp.di.global.AppContextModule
-import com.example.simplenotesapp.di.global.DaggerAppComponent
-import com.example.simplenotesapp.di.global.RoomModule
+import com.example.simplenotesapp.data.database.room.NotesDB
+import com.example.simplenotesapp.di.global.*
 import javax.inject.Inject
 
 class App: Application() {
@@ -21,6 +18,7 @@ class App: Application() {
             .builder()
             .appContextModule(AppContextModule(this))
             .roomModule(RoomModule())
+            .repositoryModule(RepositoryModule())
             .build()
         appComponent.inject(this)
     }
