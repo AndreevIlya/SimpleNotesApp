@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="add_text">Add note text</string>
     <string name="add_button">Add new note</string>
+    <string name="blank_input_error">You entered no text</string>
 </resources>

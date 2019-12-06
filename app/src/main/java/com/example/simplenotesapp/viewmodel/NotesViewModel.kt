@@ -1,23 +1,36 @@
 package com.example.simplenotesapp.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.simplenotesapp.domain.Repository
-import com.example.simplenotesapp.ui.MainActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 
 class NotesViewModel(
-    val repository: Repository,
-    val context: MainActivity
+    val repository: Repository
 ) : ViewModel() {
     private var viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private val note = MutableLiveData<String>()
+    val notes = repository.getNotes()
 
-    fun saveNote(text: String){
-        note.value = text
+    private val error = MutableLiveData<Boolean>()
+    val showError: LiveData<Boolean>
+        get() = error
+
+    fun hideError() {
+        error.value = false
+    }
+
+    fun saveNote(text: String) {
+        if (!text.isBlank()) {
+            uiScope.launch {
+                withContext(Dispatchers.IO) {
+                    repository.addNote(text)
+                }
+            }
+        }else{
+            error.value = true
+        }
     }
 
     override fun onCleared() {

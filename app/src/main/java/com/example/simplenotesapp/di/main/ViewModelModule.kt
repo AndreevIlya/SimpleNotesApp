@@ -12,8 +12,8 @@ import dagger.Provides
 class ViewModelModule(private val activity: MainActivity) {
     @Provides
     @MainScope
-    fun provideNotesViewModel(repository: Repository):NotesViewModel{
-        val factory = NotesViewModelFactory(repository,activity)
+    fun provideNotesViewModel(repository: Repository): NotesViewModel{
+        val factory = NotesViewModelFactory(repository)
         return ViewModelProviders.of(activity,factory).get(NotesViewModel::class.java)
     }
 }

@@ -9,15 +9,15 @@ import com.example.simplenotesapp.domain.Repository
 class RoomRepository(
     private val provider: DBProvider<Note, NoteEntity>
 ) : Repository {
-    override fun addNote(note: String) {
+    override suspend fun addNote(note: String) {
         provider.insert(NoteEntity.convertToRoom(note))
     }
 
-    override fun updateNote(id: Long, note: String) {
+    override suspend fun updateNote(id: Long, note: String) {
         provider.update(NoteEntity(id,note).convertToRoom())
     }
 
-    override fun deleteNote(id: Long) {
+    override suspend fun deleteNote(id: Long) {
         provider.update(NoteEntity(id,"").convertToRoom())
     }
 
