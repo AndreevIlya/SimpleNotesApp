@@ -1,6 +1,7 @@
 package com.example.simplenotesapp.ui
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -15,7 +16,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
     @Inject
     lateinit var viewModel: NotesViewModel
 
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.addButton.setOnClickListener{
             viewModel.saveNote(binding.addNote.text.toString())
+            binding.addNote.setText("", TextView.BufferType.EDITABLE)
         }
     }
 
@@ -48,6 +50,12 @@ class MainActivity : AppCompatActivity() {
                     .show()
                 viewModel.hideError()
             }
+        })
+        adapter.deleteRequest.observe(this, Observer {
+            viewModel.deleteNote(it)
+        })
+        adapter.updateRequest.observe(this, Observer {
+            viewModel.updateNote(it.id,it.note)
         })
     }
 
