@@ -1,6 +1,5 @@
 package com.example.simplenotesapp.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -38,7 +37,6 @@ class NotesViewModel(
         uiScope.launch {
             withContext(Dispatchers.IO) {
                 repository.deleteNote(id)
-                Log.i("VM","Deleting")
             }
         }
     }
@@ -48,7 +46,6 @@ class NotesViewModel(
             uiScope.launch {
                 withContext(Dispatchers.IO) {
                     repository.updateNote(id,text)
-                    Log.i("VM","Updating")
                 }
             }
         }else{

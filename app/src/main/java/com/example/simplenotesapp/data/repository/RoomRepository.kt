@@ -18,7 +18,7 @@ class RoomRepository(
     }
 
     override suspend fun deleteNote(id: Long) {
-        provider.update(NoteEntity(id,"").convertToRoom())
+        provider.delete(NoteEntity(id,"").convertToRoom())
     }
 
     override fun getNotes(): LiveData<List<NoteEntity>> = provider.getNotes()
