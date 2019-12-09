@@ -40,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.saveNote(binding.addNote.text.toString())
             binding.addNote.setText("", TextView.BufferType.EDITABLE)
             binding.mainLayout.requestFocus()
-            binding.addNote.clearFocus()
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(binding.addNote.windowToken, 0)
         }
