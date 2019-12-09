@@ -11,49 +11,61 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="64dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/green_borders"
+        android:padding="2dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/note_id"
                 android:layout_width="24dp"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 tools:text="1" />
 
             <TextView
                 android:id="@+id/note_text"
                 android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:padding="4dp"
+                tools:text="ngfdghdgfhgfdhgfdhhfdhfthf htdfhfgxdhtxht htftdhtfdhfxt xthtfdhhxtdf tghdsxgrtrdrgrdg grsgdrgrdg grdgsdrgrdgfdxrg rdgrg gd rdgrdg rdgrdgsdg rdg sdrg gr rdsg rds gdrg dg g dgrg drg drgrgresgse rgresghesgres  rfdsrsgrse " />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/note_edit_text_wrap"
                 android:layout_width="300dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="4dp"
                 android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/note_edit_text"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:hint="@string/add_text" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageButton
                 android:id="@+id/note_edit"
                 android:layout_width="48dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/green_borders"
                 android:contentDescription="@string/edit_note"
                 app:srcCompat="@android:drawable/ic_input_add"/>
 
             <ImageButton
                 android:id="@+id/note_confirm"
                 android:layout_width="48dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginEnd="2dp"
+                android:background="@drawable/green_borders"
                 android:contentDescription="@string/confirm_note_edit"
                 android:visibility="gone"
                 app:srcCompat="@drawable/confirm" />
@@ -61,7 +73,8 @@
             <ImageButton
                 android:id="@+id/note_delete"
                 android:layout_width="48dp"
-                android:layout_height="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/green_borders"
                 android:contentDescription="@string/delete_note"
                 app:srcCompat="@android:drawable/ic_delete" />
 
