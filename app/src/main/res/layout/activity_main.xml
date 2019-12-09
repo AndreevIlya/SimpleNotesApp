@@ -17,10 +17,17 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/add_note_wrap"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="128dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
+            android:background="@drawable/text_input_borders"
+            android:colorAccent = "@color/colorPrimary"
+            android:colorControlActivated="@color/colorPrimary"
+            android:colorControlNormal="@color/colorPrimary"
+            android:padding="4dp"
+            android:textColorHint="@color/colorPrimaryDark"
+            app:hintTextAppearance="@style/AddNoteTextInputLayoutAppearance"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +36,9 @@
                 android:id="@+id/add_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/add_text" />
+                android:backgroundTint="@color/colorPrimary"
+                android:hint="@string/add_text"
+                android:textColor="@color/colorPrimaryDark"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

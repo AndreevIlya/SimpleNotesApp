@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SimpleNotesApp</string>
+    <string name="app_name">Simple Notes App</string>
     <string name="action_settings">Settings</string>
     <string name="add_text">Add note text</string>
     <string name="add_button">Add new note</string>
