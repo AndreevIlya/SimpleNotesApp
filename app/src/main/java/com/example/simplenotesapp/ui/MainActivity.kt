@@ -1,6 +1,8 @@
 package com.example.simplenotesapp.ui
 
+import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -37,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         binding.addButton.setOnClickListener{
             viewModel.saveNote(binding.addNote.text.toString())
             binding.addNote.setText("", TextView.BufferType.EDITABLE)
+            binding.mainLayout.requestFocus()
+            binding.addNote.clearFocus()
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(binding.addNote.windowToken, 0)
         }
     }
 

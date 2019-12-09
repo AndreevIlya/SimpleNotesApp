@@ -8,11 +8,14 @@
             type="com.example.simplenotesapp.viewmodel.NotesViewModel"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:background="@color/grey_bkg"
         tools:context=".ui.MainActivity"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
         tools:showIn="@layout/activity_main">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -39,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorPrimary"
                 android:hint="@string/add_text"
+                android:imeOptions="actionDone"
                 android:textColor="@color/colorPrimaryDark"/>
         </com.google.android.material.textfield.TextInputLayout>
 
