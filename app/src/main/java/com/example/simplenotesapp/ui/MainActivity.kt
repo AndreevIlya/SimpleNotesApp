@@ -32,16 +32,13 @@ class MainActivity : AppCompatActivity() {
         initDataBinding()
         initListeners()
         initObservers()
-
     }
 
     private fun initListeners() {
-        binding.addButton.setOnClickListener{
+        binding.addButton.setOnClickListener {
             viewModel.saveNote(binding.addNote.text.toString())
             binding.addNote.setText("", TextView.BufferType.EDITABLE)
-            binding.mainLayout.requestFocus()
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(binding.addNote.windowToken, 0)
+            handleFocus()
         }
     }
 
@@ -52,8 +49,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
         viewModel.showError.observe(this, Observer {
-            if (it){
-                Snackbar.make(this.findViewById(android.R.id.content), R.string.blank_input_error, Snackbar.LENGTH_SHORT)
+            if (it) {
+                Snackbar.make(
+                    this.findViewById(android.R.id.content),
+                    R.string.blank_input_error,
+                    Snackbar.LENGTH_SHORT
+                )
                     .show()
                 viewModel.hideError()
             }
@@ -62,7 +63,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.deleteNote(it)
         })
         adapter.updateRequest.observe(this, Observer {
-            viewModel.updateNote(it.id,it.note)
+            viewModel.updateNote(it.id, it.note)
+            handleFocus()
         })
     }
 
@@ -81,5 +83,11 @@ class MainActivity : AppCompatActivity() {
             .adapterModule(AdapterModule())
             .build()
             .inject(this)
+    }
+
+    private fun handleFocus() {
+        binding.mainLayout.requestFocus()
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.addNote.windowToken, 0)
     }
 }
