@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.example.simplenotesapp.App
 import com.example.simplenotesapp.R
 import com.example.simplenotesapp.databinding.ActivityMainBinding
+import com.example.simplenotesapp.di.main.AdapterModule
 import com.example.simplenotesapp.di.main.DaggerMainComponent
 import com.example.simplenotesapp.di.main.ViewModelModule
 import com.example.simplenotesapp.viewmodel.NotesViewModel
@@ -17,10 +18,11 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
     @Inject
     lateinit var viewModel: NotesViewModel
-
-    private val adapter = NotesAdapter()
+    @Inject
+    lateinit var adapter: NotesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +73,7 @@ class MainActivity : AppCompatActivity() {
         DaggerMainComponent.builder()
             .appComponent(appComp)
             .viewModelModule(ViewModelModule(this))
+            .adapterModule(AdapterModule())
             .build()
             .inject(this)
     }
