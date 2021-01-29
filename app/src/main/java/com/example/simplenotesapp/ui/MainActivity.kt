@@ -1,5 +1,6 @@
 package com.example.simplenotesapp.ui
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -17,6 +18,7 @@ import com.example.simplenotesapp.di.main.ViewModelModule
 import com.example.simplenotesapp.viewmodel.NotesViewModel
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,9 +56,15 @@ class MainActivity : AppCompatActivity() {
                     Snackbar.LENGTH_SHORT
                 )
                     .show()
+                hideSoftKeyboard()
             }
 
         }
+    }
+
+    fun hideSoftKeyboard() {
+        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(currentFocus.windowToken, 0)
     }
 
     private fun initObservers() {
