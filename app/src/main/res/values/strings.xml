@@ -4,6 +4,7 @@
     <string name="add_text">Add note text</string>
     <string name="add_button">Add new note</string>
     <string name="blank_input_error">You entered no text</string>
+    <string name="emoji_is_input">You entered an emoji</string>
     <string name="edit_note">Edit note</string>
     <string name="confirm_note_edit">Confirm note edit</string>
     <string name="delete_note">Delete note</string>

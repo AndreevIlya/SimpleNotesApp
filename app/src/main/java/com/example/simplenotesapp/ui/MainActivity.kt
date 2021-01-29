@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.inputmethod.InputContentInfoCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.simplenotesapp.App
@@ -39,6 +40,22 @@ class MainActivity : AppCompatActivity() {
             viewModel.saveNote(binding.addNote.text.toString())
             binding.addNote.setText("", TextView.BufferType.EDITABLE)
             handleFocus()
+        }
+        binding.addNote.keyBoardInputCallbackListener = object :
+            EmojiEditText.KeyBoardInputCallbackListener{
+            override fun onCommitContent(
+                inputContentInfo: InputContentInfoCompat?,
+                flags: Int,
+                opts: Bundle?
+            ) {
+                Snackbar.make(
+                    this@MainActivity.findViewById(android.R.id.content),
+                    R.string.emoji_is_input,
+                    Snackbar.LENGTH_SHORT
+                )
+                    .show()
+            }
+
         }
     }
 
